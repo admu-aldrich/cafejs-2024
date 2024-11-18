@@ -1,0 +1,24 @@
+<h1>CafeJS</h1>
+
+<p>Welcome, <%= user.username %>!</p>
+
+<a href="/">Back to home page</a>
+
+<h2>Transaction History</h2>
+
+<% for (let date in transactions) { %>
+    <div class="transaction">
+        <h3>Order Date: <%= date %></h3>
+        <ul>
+            <% transactions[date].forEach(item => { %>
+                <li>
+                    <%= item.quantity %> x <%= item.productName %> 
+                    (PHP <%= item.price %> each) = PHP <%= item.total %>
+                </li>
+            <% }); %>
+        </ul>
+        <p class="total">
+            Total: PHP <%= transactions[date].reduce((sum, item) => sum + item.total, 0) %>
+        </p>
+    </div>
+<% } %>
